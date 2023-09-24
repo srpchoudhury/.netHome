@@ -1,0 +1,61 @@
+﻿@model PassDataFromVIew.Models.Employee
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <section>
+            <h4>Pass data using Params</h4>
+            @using (Html.BeginForm("PostUsingParameters", "Home"))
+            {
+                <input type="text" name="firstName" /><br />
+                <input type="text" name="lastName" /><br />
+
+                <input type="submit" value="Click Me" />
+            }
+        </section>
+
+        <section>
+            <h4>Pass data using Request</h4>
+            @using (Html.BeginForm("PostUsingRequest", "Home"))
+            {
+                <input type="text" name="firstName" /><br />
+                <input type="text" name="lastName" /><br />
+
+                <input type="submit" value="Click Me" />
+            }
+        </section>
+
+        <section>
+            <h4>Pass data using FormCollection</h4>
+            @using (Html.BeginForm("PostUsingFormCollection", "Home"))
+            {
+                <input type="text" name="firstName" /><br />
+                <input type="text" name="lastName" /><br />
+
+                <input type="submit" value="Click Me" />
+            }
+        </section>
+
+        <section>
+            <h4>Pass data using strongly binding</h4>
+            @using (Html.BeginForm("PostUsingBinding", "Home", FormMethod.Post))
+            {
+                @Html.TextBoxFor(x => x.firstName)<br />
+                @Html.TextBoxFor(x => x.lastName)<br />
+
+                <input type="submit" value="Click Me" />
+
+            }
+        </section>
+    </div>
+</body>
+</html>
