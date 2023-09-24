@@ -26,7 +26,7 @@
 
             <input type="submit" value="click" />*/
 
-            /*strongly binding*/
+            /*strongly binding
 
             @Html.TextBoxFor(x => x.FirstName) <br />
             @Html.ValidationMessageFor(x => x.FirstName)<br />
@@ -39,6 +39,22 @@
 
             @Html.TextBoxFor(x => x.age) <br />
             @Html.ValidationMessageFor(x => x.age)<br />
+
+            <input type="submit" value="click" />
+            */
+
+            @Html.ValidationSummary()
+            @Html.TextBoxFor(x => x.FirstName) <br />
+           
+
+            @Html.TextBoxFor(x => x.LastName) <br />
+           
+
+            @Html.TextBoxFor(x => x.Email) <br />
+           
+
+            @Html.TextBoxFor(x => x.age) <br />
+           
 
             <input type="submit" value="click" />
 
