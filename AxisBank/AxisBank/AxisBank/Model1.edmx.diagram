@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b1855ca022c4c11ab2a1bc220063dde" Name="Diagram1">
+        <EntityTypeShape EntityType="AxisBankDBModel.AxisBank_tblAllAccount" Width="1.5" PointX="2.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxisBankDBModel.AxisBank_tblBalance" Width="1.5" PointX="5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxisBankDBModel.AxisBank_tblLogin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AxisBankDBModel.AxisBank_tblRole" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="AxisBankDBModel.FK_AxisBank_tblBalance_AxisBank_tblAllAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="AxisBankDBModel.FK_AxisBank_tblLogin_AxisBank_tblLogin" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AxisBankDBModel.tblAccountStatement" Width="1.5" PointX="0.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

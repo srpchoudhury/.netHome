@@ -1,0 +1,39 @@
+﻿@model AxisBank.Models.AxisBank_Login
+@{
+    ViewBag.Title = "SignUp";
+  
+}
+<h6>@ViewBag.Message</h6>
+<link href="~/Content/SignUp.css" rel="stylesheet" />
+
+<div id="register-form-container" style="">
+    @using (Html.BeginForm("SignUp", "AxisBankHome", FormMethod.Post, new { @class = "login-form" }))
+    {
+        <h2>Register</h2>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+        <div class="back-to-login-link">
+            @Html.ActionLink("Back to Login", "Login", "AxisBankHome", new { }, new { @class = "back-to-login-link" })
+          
+        </div>
+    }
+</div>
+
+
+
+

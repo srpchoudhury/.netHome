@@ -1,0 +1,26 @@
+﻿@model  List<tblAccountStatement>
+@{
+    ViewBag.Title = "TotalDeposite";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Total Deposite</h2>
+<hr />
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Credit</th>
+        <th>Balance</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Date</td>
+            <td>@item.Description</td>
+            <td>@item.Credit</td>
+            <td>@item.Balance</td>
+        </tr>
+    }
+</table>
+

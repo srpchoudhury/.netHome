@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AxisBankDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AxisBank_tblAllAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="AccountNo" Type="varchar" MaxLength="50" />
+          <Property Name="AccountType" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="IdCardType" Type="varchar" MaxLength="50" />
+          <Property Name="IdCardNumber" Type="varchar" MaxLength="50" />
+          <Property Name="UploadPhoto" Type="varbinary(max)" />
+          <Property Name="Address" Type="varchar" MaxLength="300" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AxisBank_tblBalance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AxisBank_tblLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AxisBank_tblRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblAccountStatement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Debit" Type="float" />
+          <Property Name="Credit" Type="float" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="AccountId" Type="int" />
+        </EntityType>
+        <Association Name="FK_AxisBank_tblBalance_AxisBank_tblAllAccount">
+          <End Role="AxisBank_tblAllAccount" Type="Self.AxisBank_tblAllAccount" Multiplicity="0..1" />
+          <End Role="AxisBank_tblBalance" Type="Self.AxisBank_tblBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AxisBank_tblAllAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AxisBank_tblBalance">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AxisBank_tblLogin_AxisBank_tblLogin">
+          <End Role="AxisBank_tblLogin" Type="Self.AxisBank_tblLogin" Multiplicity="1" />
+          <End Role="AxisBank_tblLogin1" Type="Self.AxisBank_tblLogin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AxisBank_tblLogin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AxisBank_tblLogin1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AxisBankDBModelStoreContainer">
+          <EntitySet Name="AxisBank_tblAllAccount" EntityType="Self.AxisBank_tblAllAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AxisBank_tblBalance" EntityType="Self.AxisBank_tblBalance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AxisBank_tblLogin" EntityType="Self.AxisBank_tblLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AxisBank_tblRole" EntityType="Self.AxisBank_tblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAccountStatement" EntityType="Self.tblAccountStatement" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AxisBank_tblBalance_AxisBank_tblAllAccount" Association="Self.FK_AxisBank_tblBalance_AxisBank_tblAllAccount">
+            <End Role="AxisBank_tblAllAccount" EntitySet="AxisBank_tblAllAccount" />
+            <End Role="AxisBank_tblBalance" EntitySet="AxisBank_tblBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AxisBank_tblLogin_AxisBank_tblLogin" Association="Self.FK_AxisBank_tblLogin_AxisBank_tblLogin">
+            <End Role="AxisBank_tblLogin" EntitySet="AxisBank_tblLogin" />
+            <End Role="AxisBank_tblLogin1" EntitySet="AxisBank_tblLogin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AxisBankDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AxisBank_tblAllAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="IdCardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdCardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UploadPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="AxisBank_tblBalance" Relationship="Self.FK_AxisBank_tblBalance_AxisBank_tblAllAccount" FromRole="AxisBank_tblAllAccount" ToRole="AxisBank_tblBalance" />
+        </EntityType>
+        <EntityType Name="AxisBank_tblBalance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="7" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="AxisBank_tblAllAccount" Relationship="Self.FK_AxisBank_tblBalance_AxisBank_tblAllAccount" FromRole="AxisBank_tblBalance" ToRole="AxisBank_tblAllAccount" />
+        </EntityType>
+        <EntityType Name="AxisBank_tblLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="AxisBank_tblLogin1" Relationship="Self.FK_AxisBank_tblLogin_AxisBank_tblLogin" FromRole="AxisBank_tblLogin" ToRole="AxisBank_tblLogin1" />
+          <NavigationProperty Name="AxisBank_tblLogin2" Relationship="Self.FK_AxisBank_tblLogin_AxisBank_tblLogin" FromRole="AxisBank_tblLogin1" ToRole="AxisBank_tblLogin" />
+        </EntityType>
+        <EntityType Name="AxisBank_tblRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="7" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="7" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_AxisBank_tblBalance_AxisBank_tblAllAccount">
+          <End Role="AxisBank_tblAllAccount" Type="Self.AxisBank_tblAllAccount" Multiplicity="0..1" />
+          <End Role="AxisBank_tblBalance" Type="Self.AxisBank_tblBalance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AxisBank_tblAllAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AxisBank_tblBalance">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AxisBank_tblLogin_AxisBank_tblLogin">
+          <End Role="AxisBank_tblLogin" Type="Self.AxisBank_tblLogin" Multiplicity="1" />
+          <End Role="AxisBank_tblLogin1" Type="Self.AxisBank_tblLogin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AxisBank_tblLogin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AxisBank_tblLogin1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AxisBankDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AxisBank_tblAllAccount" EntityType="Self.AxisBank_tblAllAccount" />
+          <EntitySet Name="AxisBank_tblBalance" EntityType="Self.AxisBank_tblBalance" />
+          <EntitySet Name="AxisBank_tblLogin" EntityType="Self.AxisBank_tblLogin" />
+          <EntitySet Name="AxisBank_tblRole" EntityType="Self.AxisBank_tblRole" />
+          <AssociationSet Name="FK_AxisBank_tblBalance_AxisBank_tblAllAccount" Association="Self.FK_AxisBank_tblBalance_AxisBank_tblAllAccount">
+            <End Role="AxisBank_tblAllAccount" EntitySet="AxisBank_tblAllAccount" />
+            <End Role="AxisBank_tblBalance" EntitySet="AxisBank_tblBalance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AxisBank_tblLogin_AxisBank_tblLogin" Association="Self.FK_AxisBank_tblLogin_AxisBank_tblLogin">
+            <End Role="AxisBank_tblLogin" EntitySet="AxisBank_tblLogin" />
+            <End Role="AxisBank_tblLogin1" EntitySet="AxisBank_tblLogin" />
+          </AssociationSet>
+          <EntitySet Name="tblAccountStatement" EntityType="AxisBankDBModel.tblAccountStatement" />
+        </EntityContainer>
+        <EntityType Name="tblAccountStatement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Debit" Type="Double" />
+          <Property Name="Credit" Type="Double" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="AccountId" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AxisBankDBModelStoreContainer" CdmEntityContainer="AxisBankDBEntities">
+          <EntitySetMapping Name="AxisBank_tblAllAccount">
+            <EntityTypeMapping TypeName="AxisBankDBModel.AxisBank_tblAllAccount">
+              <MappingFragment StoreEntitySet="AxisBank_tblAllAccount">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IdCardType" ColumnName="IdCardType" />
+                <ScalarProperty Name="IdCardNumber" ColumnName="IdCardNumber" />
+                <ScalarProperty Name="UploadPhoto" ColumnName="UploadPhoto" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AxisBank_tblBalance">
+            <EntityTypeMapping TypeName="AxisBankDBModel.AxisBank_tblBalance">
+              <MappingFragment StoreEntitySet="AxisBank_tblBalance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AxisBank_tblLogin">
+            <EntityTypeMapping TypeName="AxisBankDBModel.AxisBank_tblLogin">
+              <MappingFragment StoreEntitySet="AxisBank_tblLogin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AxisBank_tblRole">
+            <EntityTypeMapping TypeName="AxisBankDBModel.AxisBank_tblRole">
+              <MappingFragment StoreEntitySet="AxisBank_tblRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAccountStatement">
+            <EntityTypeMapping TypeName="AxisBankDBModel.tblAccountStatement">
+              <MappingFragment StoreEntitySet="tblAccountStatement">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Debit" ColumnName="Debit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

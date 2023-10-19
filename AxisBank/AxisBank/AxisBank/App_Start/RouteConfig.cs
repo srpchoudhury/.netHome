@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace axis
+namespace AxisBank
 {
     public class RouteConfig
     {
@@ -16,7 +16,7 @@ namespace axis
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "UserPanel", id = UrlParameter.Optional }
+                defaults: new { controller = "AxisBankHome", action = "Landing", id = UrlParameter.Optional }
             );
         }
     }

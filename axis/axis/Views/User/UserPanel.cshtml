@@ -1,0 +1,121 @@
+﻿@model axis.Models.UserRegistrationModel
+@{
+    ViewBag.Title = "UserPanel";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/Style.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+
+
+<div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+    <h2 id="heading">Sign Up Your User Account</h2>
+    <p>Fill all form field to go to next step</p>
+    <form id="msform">
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active" id="account"><strong>Account</strong></li>
+            <li id="personal"><strong>Personal</strong></li>
+            <li id="payment"><strong>Image</strong></li>
+            <li id="confirm"><strong>Finish</strong></li>
+        </ul>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div> <br> <!-- fieldsets -->
+        <fieldset>
+            <div class="form-card">
+                <div class="row">
+                    <div class="col-7">
+                        <h2 class="fs-title">Account Information:</h2>
+                    </div>
+                    <div class="col-5">
+                        <h2 class="steps">Step 1 - 4</h2>
+                    </div>
+                </div>
+
+                @Html.LabelFor(model => model.Email, new { @class = "fieldlabels" })
+                @Html.TextBoxFor(model => model.Email, new { @placeholder = "Enter your email", @name = "email" })
+
+                @Html.LabelFor(model => model.Username, new { @class = "fieldlabels" })
+                @Html.TextBoxFor(model => model.Username, new { @placeholder = "Enter your username", @name = "Username" })
+
+                @Html.LabelFor(model => model.ConfirmPassword, new { @class = "fieldlabels" })
+                @Html.PasswordFor(model => model.Password, new { @placeholder = "Enter your password", @name = "Password" })
+
+                @Html.LabelFor(model => model.Password, new { @class = "fieldlabels" })
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @placeholder = "Confirm your password", @name = "ConfirmPassword" })
+
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset>
+            <div class="form-card">
+                <div class="row">
+                    <div class="col-7">
+                        <h2 class="fs-title">Personal Information:</h2>
+                    </div>
+                    <div class="col-5">
+                        <h2 class="steps">Step 2 - 4</h2>
+                    </div>
+                </div>
+                @Html.LabelFor(model => model.FirstName, new { @class = "fieldlabels" })
+                @Html.TextBoxFor(model => model.FirstName, new { @placeholder = "First Name", @name = "fname" })
+
+                @Html.LabelFor(model => model.LastName, new { @class = "fieldlabels" })
+                @Html.TextBoxFor(model => model.LastName, new { @placeholder = "Last Name", @name = "lname" })
+
+                @Html.LabelFor(model => model.ContactNumber, new { @class = "fieldlabels" })
+                @Html.TextBoxFor(model => model.ContactNumber, new { @placeholder = "Contact No.", @name = "phno" })
+
+                @Html.LabelFor(model => model.AlternateContactNumber, new { @class = "fieldlabels" })
+                @Html.TextBoxFor(model => model.AlternateContactNumber, new { @placeholder = "Alternate Contact No.", @name = "phno_2" })
+
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+        </fieldset>
+        <fieldset>
+            <div class="form-card">
+                <div class="row">
+                    <div class="col-7">
+                        <h2 class="fs-title">Image Upload:</h2>
+                    </div>
+                    <div class="col-5">
+                        <h2 class="steps">Step 3 - 4</h2>
+                    </div>
+                </div>
+                <label class="fieldlabels">Upload Your Photo:</label>
+                <input type="file" name="pic" accept="image/*">
+                <label class="fieldlabels">Upload Signature Photo:</label>
+                <input type="file" name="pic" accept="image/*">
+
+               
+
+            </div>
+            <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+        </fieldset>
+        <fieldset>
+            <div class="form-card">
+                <div class="row">
+                    <div class="col-7">
+                        <h2 class="fs-title">Finish:</h2>
+                    </div>
+                    <div class="col-5">
+                        <h2 class="steps">Step 4 - 4</h2>
+                    </div>
+                </div> <br><br>
+                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <img src="~/Images/img.png" class="fit-image" />
+                    </div>
+                </div> <br><br>
+                <div class="row justify-content-center">
+                    <div class="col-7 text-center">
+                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+

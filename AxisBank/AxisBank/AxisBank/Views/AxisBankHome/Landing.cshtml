@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Landing";
+}
+
+<h2>Landing</h2>
+
+<style>
+    /*Styling for sliding */
+    .slider-container {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        margin-left: 100px;
+        margin-top: 20px;
+    }
+
+    .slider-container {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+
+
+    .slider {
+        width: 1500px;
+        height: 300px;
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .slide {
+        width: 500px;
+        height: 300px;
+    }
+
+    .slider img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .slider-nav {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+        .slider-nav i {
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 5px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+            .slider-nav i.active {
+                color: #000;
+            }
+
+            .slider-nav i.active {
+                color: #97144c;
+            }
+</style>
+
+
+
+<div class="slider-container">
+    <div class="slider">
+        <div class="slide">
+            <img src="https://www.axisbank.com/images/default-source/homebanner/open-by-axis-bank-748x301.jpg"
+                 alt="Image 1" />
+        </div>
+        <div class="slide">
+            <img src="https://www.axisbank.com/images/default-source/homebanner/axis-bank-24-7-flexi-credit-banner-748x301.jpg"
+                 alt="Image 2" />
+        </div>
+        <div class="slide">
+            <img src="https://www.axisbank.com/images/default-source/homebanner/axis-bank-infinity-savings-account-748x301.jpg"
+                 alt="Image 3" />
+        </div>
+    </div>
+    <div class="slider-nav">
+        <i class="fas fa-circle active" onclick="showSlide(0)"></i>
+        <i class="fas fa-circle" onclick="showSlide(1)"></i>
+        <i class="fas fa-circle" onclick="showSlide(2)"></i>
+    </div>
+</div>
+
+<script>
+    // JavaScript for sliding functionality
+    let currentIndex = 0;
+    const slideCount = 3;
+    const slideWidth = 500;
+
+    function showSlide(index) {
+        currentIndex = index;
+        const transformValue = -currentIndex * slideWidth;
+        document.querySelector(
+            ".slider"
+        ).style.transform = `translateX(${transformValue}px)`;
+
+        // Update the active icon
+        document.querySelectorAll(".slider-nav i").forEach((icon, i) => {
+            if (i === currentIndex) {
+                icon.classList.add("active");
+            } else {
+                icon.classList.remove("active");
+            }
+        });
+    }
+
+    // Initial slide
+    showSlide(currentIndex);
+</script>
+
+
+
+
